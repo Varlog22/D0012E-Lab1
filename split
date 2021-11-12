@@ -1,0 +1,27 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Lab1 {
+	static int k;
+	static int n;
+  
+  static List split(List<Integer> lst) {								// Ska splitta osorterade listan till n/k sublistor
+		List<List> splitList = new ArrayList();					// listan som kommer hålla alla sublistor tillslut
+		splitList.add(lst);										// lägger till startlistan
+		int numOfLists = n / k;									// om man skulle behöva n/k så finns den här q8)
+		
+		while(retSize(splitList.get(0)) > k) {					// splittar tills sublistorna är > k
+			int end = retSize(splitList.get(0));				// hittar slutet på listan
+			int mid = Math.floorDiv(end, 2);					// hittar mitten på listan
+			
+			splitList.add(splitList.get(0).subList(0, mid));	// Delar upp från index 0 till mitten
+			splitList.add(splitList.get(0).subList(mid, end));	// Delar upp från mitten till sista elementet
+			splitList.remove(0);								// tar bort den redan uppdelade initiella listan
+		}
+		System.out.println(numOfLists);
+		return splitList;
+	}
+	
+	static int retSize(List lst) {								// legit bara ger storleken på ett element
+		return lst.size();
+	}
