@@ -1,34 +1,23 @@
-import java.util.ArrayList;
-import java.util.List;
-
-public class Lab1 {
-	static int k;
-	static int n;
-  
-    static ArrayList<List> split(ArrayList<Integer> lst) {                  	// Ska splitta osorterade listan till n/k sublistor
-        ArrayList<List> splitList = new ArrayList();                        	// listan som kommer hålla alla sublistor tillslut
-        splitList.add(lst);                                                 	// lägger till startlistan
-        int numOfLists = (int) Math.ceil(n / k);                            	// antalet listor vi kommer att få
+    static ArrayList<List> split(ArrayList<Integer> lst) {                  // Ska splitta osorterade listan till n/k sublistor
+        ArrayList<List> splitList = new ArrayList();                        // listan som kommer hålla alla sublistor tillslut
+        splitList.add(lst);                                                 // lägger till startlistan
+        int numOfLists = (int) Math.ceil(n / k);                            // antalet listor vi kommer att få
         
-        for(int i = 0; i <= numOfLists - 1; i++) {			    	// kör loopen lika många gånger som vi kommer få listor
-        	int part = i * k;					    	// part är en variabel som beskriver storleken på varje del-lista
-        	splitList.add(splitList.get(0).subList(part, part+k));		// lägger till rätt del som en ny lista i listan med sublistor
+        for(int i = 0; i <= numOfLists - 1; i++) {							// kör loopen lika många gånger som vi kommer få listor
+        	int part = i * k;												// part är en variabel som beskriver storleken på varje del-lista
+        	splitList.add(splitList.get(0).subList(part, part+k));			// lägger till rätt del som en ny lista i listan med sublistor
         }
         
-        if(n % k == 0) {							// om n/k går jämt ut behöver vi bara ta bort startlistan och returnera
-        	splitList.remove(0);						// tar bort startlistan
+        if(n % k == 0) {													// om n/k går jämt ut behöver vi bara ta bort startlistan och returnera
+        	splitList.remove(0);											// tar bort startlistan
         	return splitList;
         }
         
-        else {									// annars måste vi ta hänsyn till restelementen
-        	int fromEnd = n % k;						// variabel för de element som saknas
-        	splitList.add(splitList.get(0).subList((n-1)-fromEnd, n-1));	// lägger till restelementen
-            splitList.remove(0);						// tar bort startlistan
+        else {																// annars måste vi ta hänsyn till restelementen
+        	int fromEnd = n % k;											// variabel för de element som saknas
+        	splitList.add(splitList.get(0).subList((n)-fromEnd, n));	// lägger till restelementen
+            splitList.remove(0);											// tar bort startlistan
             return splitList;
         }
         
-    }
-    
-    static int retSize(List lst) {                                		// legit bara ger storleken på ett element i en lista med Lists
-        return lst.size();
     }
