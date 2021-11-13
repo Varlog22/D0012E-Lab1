@@ -1,0 +1,65 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Leffe_algo {
+    static int k;
+    static int n;
+
+    public static void main(String[] args) {                     // Main skit för o sätta start listan, k etc
+        // TODO Auto-generated method stub
+        
+        int val = 15;														// variabel som sätter längd på startlisan aka hur många element som ska genereras
+        k = 6;																// sätter k
+        ArrayList<Integer> orglist = new ArrayList<Integer>();				// skapar den första listan som skall hålla alla element från start
+        orglist = randomizer(val);											// lägger in val st random element
+        n = orglist.size();													// n = storleken på startlistan
+        System.out.println(split(orglist));
+    }
+    
+    
+    public static ArrayList<Integer> randomizer(int val) {                  // Metod som ska skapa en lista med random tal
+        ArrayList<Integer> numbers = new ArrayList<Integer>();    			// Skapar själva arraylisten som håller våra värden
+        int i = 0;                                                			// itererings variabel
+        Random rand = new Random();                                			// skapar random tal
+        
+        while(i < val) {                                        			// kör loopen så vi fyller arraylisten med val antal tal
+            int element = rand.nextInt(val);                    			// använder rand för o fixa ett random tal som sparas i element
+            numbers.add(element);                                			// lägger till element i arraylisten
+            i++;
+        }
+        
+        System.out.println("Original listan: " + numbers);
+        return numbers;
+    }
+
+    
+    static ArrayList<List> split(ArrayList<Integer> lst) {                  // Ska splitta osorterade listan till n/k sublistor
+        ArrayList<List> splitList = new ArrayList();                        // listan som kommer hålla alla sublistor tillslut
+        splitList.add(lst);                                                 // lägger till startlistan
+        int numOfLists = (int) Math.ceil(n / k);                            // antalet listor vi kommer att få
+        
+        for(int i = 0; i <= numOfLists - 1; i++) {							// kör loopen lika många gånger som vi kommer få listor
+        	int part = i * k;												// part är en variabel som beskriver storleken på varje del-lista
+        	splitList.add(splitList.get(0).subList(part, part+k));			// lägger till rätt del som en ny lista i listan med sublistor
+        }
+        
+        if(n % k == 0) {													// om n/k går jämt ut behöver vi bara ta bort startlistan och returnera
+        	splitList.remove(0);											// tar bort startlistan
+        	return splitList;
+        }
+        
+        else {																// annars måste vi ta hänsyn till restelementen
+        	int fromEnd = n % k;											// variabel för de element som saknas
+        	splitList.add(splitList.get(0).subList((n-1)-fromEnd, n-1));	// lägger till restelementen
+            splitList.remove(0);											// tar bort startlistan
+            return splitList;
+        }
+        
+    }
+    
+    static int retSize(List lst) {                                			// legit bara ger storleken på ett element i en lista med Lists
+        return lst.size();
+    }
+    
+}
