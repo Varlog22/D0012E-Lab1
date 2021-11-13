@@ -10,11 +10,11 @@ public class Leffe_algo {
         // TODO Auto-generated method stub
         
         int val = 15;														// variabel som sätter längd på startlisan aka hur många element som ska genereras
-        k = 6;																// sätter k
+        k = 5;																// sätter k
         ArrayList<Integer> orglist = new ArrayList<Integer>();				// skapar den första listan som skall hålla alla element från start
         orglist = randomizer(val);											// lägger in val st random element
         n = orglist.size();													// n = storleken på startlistan
-        System.out.println(split(orglist));
+        System.out.println("Splittad lista: " + split(orglist));
     }
     
     
@@ -51,15 +51,9 @@ public class Leffe_algo {
         
         else {																// annars måste vi ta hänsyn till restelementen
         	int fromEnd = n % k;											// variabel för de element som saknas
-        	splitList.add(splitList.get(0).subList((n-1)-fromEnd, n-1));	// lägger till restelementen
+        	splitList.add(splitList.get(0).subList((n)-fromEnd, n));	// lägger till restelementen
             splitList.remove(0);											// tar bort startlistan
             return splitList;
         }
         
     }
-    
-    static int retSize(List lst) {                                			// legit bara ger storleken på ett element i en lista med Lists
-        return lst.size();
-    }
-    
-}
