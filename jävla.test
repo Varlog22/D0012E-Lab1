@@ -1,0 +1,99 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+public class Leffe_algo {
+    static int k;
+    static int n;
+
+    public static void main(String[] args) {                     // Main skit för o sätta start listan, k etc
+        // TODO Auto-generated method stub
+        
+        /*List<Integer> lst = new ArrayList();
+        lst.add(1);                                                // bs test värden lmao, auto gen för random skit fixar jag sen
+        lst.add(2);
+        lst.add(3);
+        lst.add(4);
+        lst.add(5);
+        lst.add(6);
+        lst.add(7);
+        lst.add(8);
+        lst.add(9);
+        lst.add(10);
+        lst.add(11);
+        lst.add(12);
+        lst.add(13);
+        lst.add(14);
+        lst.add(15);
+        
+        k = 2;                                                    // bara klämm dit nå k värde
+        n = lst.size();                                            // n be like ooga booga
+        System.out.println((lst));                                // printar osorterade startlistan
+        System.out.println(split(lst));                            // printar det som spilt funkt ger xd
+        lst = split(lst);*/
+        
+        int val = 15;
+        k = 5;
+        ArrayList<Integer> orglist = new ArrayList<Integer>();
+        orglist = randomizer(val);
+        n = orglist.size();
+        System.out.println(split(orglist));
+        
+        
+    }
+    
+    public static ArrayList<Integer> randomizer(int val) {                            // Metod som ska skapa en lista med random tal
+        ArrayList<Integer> numbers = new ArrayList<Integer>();    // Skapar själva arraylisten som håller våra värden
+        int i = 0;                                                // itererings variabel
+        Random rand = new Random();                                // skapar random tal
+        while(i < val) {                                        // kör loopen så vi fyller arraylisten med val antal tal
+            int element = rand.nextInt(val);                    // använder rand för o fixa ett random tal som sparas i element
+            numbers.add(element);                                // lägger till element i arraylisten
+            i++;                                                // ökar loop variablen
+        }
+        System.out.println("Original listan: " + numbers);
+        return numbers;                                            // returnar
+    }
+
+    
+    
+    static ArrayList<List> split(ArrayList<Integer> lst) {                                // Ska splitta osorterade listan till n/k sublistor
+        ArrayList<List> splitList = new ArrayList();                    // listan som kommer hålla alla sublistor tillslut
+        splitList.add(lst);                                        // lägger till startlistan
+        int numOfLists = n / k;                                    // om man skulle behöva n/k så finns den här q8)
+        
+        while((retSize(splitList) >= numOfLists) || (retSize(splitList.get(0)) >= k)) {                    // splittar tills sublistorna är > k
+            int end = retSize(splitList.get(0));                // hittar slutet på listan
+            int flNumOfLists = Math.floorDiv(end, k);                    // hittar mitten på listan
+            
+            for(int i = 0; i == k-1; i++) {
+            	int part = i * flNumOfLists;
+            	splitList.add(splitList.get(0).subList(part, part + flNumOfLists));
+            }
+            //splitList.add(splitList.get(0).subList(0, mid));    // Delar upp från index 0 till mitten
+            //splitList.add(splitList.get(0).subList(mid, end));    // Delar upp från mitten till sista elementet
+            
+            
+            splitList.remove(0);                                // tar bort den redan uppdelade initiella listan
+        }
+        System.out.println("NumOfLists: " + numOfLists);
+        return splitList;
+    }
+    
+    static int retSize(List lst) {                                // legit bara ger storleken på ett element
+        return lst.size();
+    }
+    
+    void bsort(List lst) {
+        
+    }
+    
+    void insertionSort() {
+        
+    }
+
+    void merge(int arr[]) {
+        
+    }
+    
+}
