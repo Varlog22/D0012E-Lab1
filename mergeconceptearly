@@ -1,0 +1,26 @@
+    static ArrayList<Integer> merge(ArrayList<Integer> aList, ArrayList<Integer> bList){
+    	int i = 0;															// iter var A
+    	int j = 0;															// iter var B
+    	ArrayList<Integer> finalList = new ArrayList();						// skall hålla resultatet
+    	
+    	while(finalList.size() <= aList.size() + bList.size()) {			// EXCEPTIONS?????????????????
+    		if (aList.get(0) > bList.get(0)) {
+    			finalList.add(aList.get(0));
+    			aList.remove(0);
+    		}
+    		
+    		else if(aList.get(i) < bList.get(j)) {
+    			finalList.add(bList.get(j));
+    			j++;
+    		}
+    		
+    		else {
+    			finalList.add(aList.get(i));
+    			finalList.add(bList.get(j));
+    			i++;
+    			j++;
+    		}
+    	}
+    	
+    	return finalList;
+    }
