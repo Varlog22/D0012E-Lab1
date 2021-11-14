@@ -1,0 +1,45 @@
+    static ArrayList<Integer> merge(ArrayList<Integer> aList, ArrayList<Integer> bList){
+    	ArrayList<Integer> finalList = new ArrayList();						// skall hålla resultatet
+    	int totSize = aList.size() + bList.size();							// längden som slutlistan skall bli
+    	while(finalList.size() <= totSize) {								// körs while listan inte är lång nog
+    		try {															// kör tills vi får exception
+    			if (aList.get(0) < bList.get(0)) {							// kollar vilket element ur vilken lista som är minst
+    				finalList.add(aList.get(0));							// stoppar in det elementet i finalListan
+    				aList.remove(0);										// tar bort det ur startlistan
+    			}
+    		
+    			else if(aList.get(0) > bList.get(0)) {						// kollar vilket element ur vilken lista som är minst
+    				finalList.add(bList.get(0));							// stoppar in det elementet i finalListan
+    				bList.remove(0);										// tar bort det ur startlistan
+    			}
+    		
+    			else {														// fallet då elementen är identiska
+    				finalList.add(aList.get(0));							// lägger till det ena elementet,
+    				finalList.add(bList.get(0));							// lägger till det andra elementet
+    				aList.remove(0);										// tar bort från startlistan
+    				bList.remove(0);										// tar bort från startlistan
+    			}
+    		}
+    		
+    		catch(IndexOutOfBoundsException e) {							// tillslut kommer någon av if/else över att ge index out of bounds pga listan är slut
+    			if(aList.size() == 0 && bList.size() == 0) {				// fallet då båda listorna är tomma
+    				return finalList;										// då vill vi bara skicka ut resultatet
+    			}
+    			
+    			else if(aList.size() == 0) {								// fallet då första listan är helt tom
+    				for(int i = 0; i < bList.size(); i++) {					// kör för alla element i lista 2
+    					finalList.add(bList.get(i));						// lägger till element ifrån lista 2 till slutet av final list
+    				}
+    				return finalList;										// returnerar när den är klar
+    			}
+    			else {														// fallet då den andra listan är tom
+    				for(int i = 0; i < aList.size(); i++) {					// kör för alla element i lista 1
+    					finalList.add(aList.get(i));						// lägger till element från lista 1 till slutet av finalList
+    				}
+    				return finalList;										// returnerar resultatet
+    			}
+    		}
+    	}
+    	
+    	return finalList;													// här kommer vi väl aldrig hamna för det kommer alltid bli out of bounds?
+    }
