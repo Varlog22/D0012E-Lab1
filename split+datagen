@@ -37,7 +37,24 @@ public class Leffe_algo {
     static ArrayList<List> split(ArrayList<Integer> lst) {                  // Ska splitta osorterade listan till n/k sublistor
         ArrayList<List> splitList = new ArrayList();                        // listan som kommer hålla alla sublistor tillslut
         splitList.add(lst);                                                 // lägger till startlistan
-        int numOfLists = (int) Math.ceil(n / k);                            // antalet listor vi kommer att få
+        
+        
+        // --- Karolina edit start ---
+        if (k>=n) {                                                         // kollar att k < n som det står i labbspecen
+			throw new IllegalArgumentException("k must be smaller than n"); // kastar ett undantag ifall k >= 
+		} else {
+			if((n/k) % 2 == 0) {                                            // om n/k är jämnt tar vi bara n/k
+				int numOfLists = n/k;
+			}
+			else {
+				int numOfLists = (int) Math.ceil(n/k);                      // annars tar vi n/k + 1
+			}
+		}
+                
+        //int numOfLists = (int) Math.ceil(n / k);                            // antalet listor vi kommer att få
+        
+        // --- Karolina edit stop ---
+        
         
         for(int i = 0; i <= numOfLists - 1; i++) {							// kör loopen lika många gånger som vi kommer få listor
         	int part = i * k;												// part är en variabel som beskriver storleken på varje del-lista
