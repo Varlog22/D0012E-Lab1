@@ -1,0 +1,12 @@
+	public ArrayList<Integer> mergeSort (ArrayList<Integer> arr) {
+		if(arr.size() <= 1) {
+			return arr;
+		}
+		else {
+			int mid = (arr.size())/2;
+			ArrayList<Integer> left = mergeSort((ArrayList<Integer>) arr.subList(0, mid));
+			ArrayList<Integer> right = mergeSort((ArrayList<Integer>) arr.subList(mid, arr.size()));
+			ArrayList<Integer> result = merge(left, right);
+			return result;
+		}
+	}
